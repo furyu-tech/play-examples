@@ -1,0 +1,18 @@
+.footer {
+    text-align: center;
+}
+a.command {
+    font-size: x-small
+}
+a.task:not(:first-of-type) {
+    border-left: 1px solid;
+}
+.error {
+    font-weight: bold;
+    color: red;
+}
+.notice {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid rgba(200,200,200,0.5);
+}

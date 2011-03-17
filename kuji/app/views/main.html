@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+        #{get 'moreScripts' /}
+    </head>
+    <body>
+        #{if flash['message']}
+            <div class="messages">
+            ${flash['message']}
+            </div>
+        #{/if}
+        <div class="errros">
+            #{errors}
+            <div class="error">${error}</div>
+            #{/errors}
+        </div>
+        #{doLayout /}
+
+        <hr />
+
+
+        <div class="footer">
+            <a class="task" href="@{Application.index}">トップ</a>
+            <a class="task" href="@{Users.index}">ユーザ</a>
+            <a class="task" href="@{Tasks.index}">くじ</a>
+        </div>
+    </body>
+</html>

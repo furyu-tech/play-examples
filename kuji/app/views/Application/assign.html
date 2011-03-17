@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<style>
+    .count {
+        font-size: x-small
+    }
+</style>
+
+<a href="@{Tasks.newTask}">くじを追加する</a><br/>
+<a href="@{assign}">くじを引く！</a>
+
+<hr />
+
+<h1>おめでとうございます</h1>
+
+<div>
+<span class="name">${user.name}</span>さんは「<span class="kuji">${task.title}</span>」を引きました!
+<div class="count">全 ${count} 件</div>
+</div>

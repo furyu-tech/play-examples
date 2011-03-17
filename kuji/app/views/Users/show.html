@@ -1,0 +1,14 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>${user.name}さん</h1>
+
+<h2>引いたくじ</h2>
+
+<ol>
+#{list items:tasks, as:'task'}
+    <li>${task.title} <a class="command" href="@{Tasks.put(task.id)}">戻す</a></li>
+#{/list}
+</ol>
+
+<div class="count">全 ${tasks?.size} 件</div>

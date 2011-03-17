@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'くじ一覧' /}
+
+<h1>くじを入れる</h1>
+<form method="post" action="@{create}">
+    <input type="text" name="title"/>
+    <input type="submit" value="OK"/>
+</form>
+
+<h1>全てのくじ</h1>
+
+<ol>
+    #{list items:tasks, as:'task'}
+    <li><span>${task.title}</span>#{if task.user}(<span>${task.user.name}</span>)#{/if}
+    <a href="@{Tasks.delete(task.id)}">捨てる</a></li>
+    #{/list}
+</ol>

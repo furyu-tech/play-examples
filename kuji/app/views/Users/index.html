@@ -1,0 +1,8 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{list items:users, as:'user'}
+        <div>
+            <a href="@{Users.show(user.id)}">${user.name}</a>
+        </div>
+#{/list}
