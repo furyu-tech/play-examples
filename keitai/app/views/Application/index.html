@@ -1,4 +1,22 @@
-#{extends 'main.html' /}
-#{set title:'Home' /}
+#{extends 'keitai.html' /}
+#{set title:'Play! frameworkで携帯サイトサンプル' /}
 
-#{welcome /}
+<h1 style="font-size: x-small">携帯サンプルサイト</h1>
+
+<h2 style="font-size: x-small">基本情報</h2>
+
+<span style="font-size: x-small">あなたの端末キャリア: </span>
+<span style="font-size: x-small">${carrier}</span>
+
+<span style="font-size: x-small">User agent: </span>
+<span style="font-size: x-small">${userAgent}</span>
+
+<h2 style="font-size: x-small">画像リサイズの例</h2>
+
+<span style="font-size: x-small">この画面サイズに合うようにリサイズします :</span>
+<form method="post" action="@{Application.saveScreenSize}">
+    <input type="text" name="width" value="${width}" /><span>x</span>
+    <input type="text" name="height" value="${height}" />
+</form>
+
+<img src="@{Application.image}"/>
