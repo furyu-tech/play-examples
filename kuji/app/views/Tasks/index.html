@@ -1,10 +1,16 @@
 #{extends 'main.html' /}
 #{set title:'くじ一覧' /}
 
-<h1>くじを入れる</h1>
+<h1>くじをつくる</h1>
 <form method="post" action="@{create}">
     <input type="text" name="title"/>
     <input type="submit" value="OK"/>
+</form>
+
+<h2>一行一件で、複数のくじを一度につくれます</h2>
+<form method="post" action="@{batchCreate}">
+    <textarea name="text"></textarea>
+    <input type="submit" value="OK" />
 </form>
 
 <h1>全てのくじ</h1>

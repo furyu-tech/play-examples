@@ -27,13 +27,43 @@ public class Tasks extends Controller {
 
         if (validation.hasErrors()) {
             validation.keep();
-            newTask();
+            index();
         }
         
         Task task = new Task();
 
         task.title = title;
         task.save();
+
+        index();
+    }
+
+    public static void batchCreate(
+            @Required(message = "タイトルを入力してください") String text
+            ) {
+        if (validation.hasErrors()) {
+            validation.keep();
+            index();
+        }
+
+        int duplicates = 0;
+
+        String[] titles = text.split("\n");
+        for (String title : titles) {
+
+            validation.required(title);
+            if (validation.hasErrors()) {
+                index();
+            }
+
+            if (Task.find("title = ?", title).first() == null) {
+                Task task = new Task();
+                task.title = title;
+                task.save();
+            } else {
+                duplicates ++;
+            }
+        }
 
         index();
     }

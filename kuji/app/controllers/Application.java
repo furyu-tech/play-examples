@@ -1,11 +1,9 @@
 package controllers;
 
+import models.Task;
+import models.User;
 import play.data.validation.Required;
-import play.mvc.*;
-
-import models.*;
-
-import java.util.ArrayList;
+import play.mvc.Controller;
 
 public class Application extends Controller {
 
