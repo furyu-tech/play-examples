@@ -17,6 +17,17 @@ public class Tasks extends Controller {
         render(tasks);
     }
 
+    public static void indexTxt() {
+        List<Task> tasks = Task.all().fetch();
+        String text = "";
+
+        for (Task t : tasks) {
+            text += t.title + "\n";
+        }
+
+        renderText(text);
+    }
+
     public static void newTask() {
         render();
     }

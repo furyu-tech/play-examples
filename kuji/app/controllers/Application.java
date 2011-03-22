@@ -2,6 +2,7 @@ package controllers;
 
 import models.Task;
 import models.User;
+import play.Logger;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
@@ -36,6 +37,10 @@ public class Application extends Controller {
         }
 
         task.user = user;
+
+        Logger.debug("task=" + task.toString());
+        Logger.debug("user=" + user.toString());
+
         task.save();
 
         render(count, user, task);
