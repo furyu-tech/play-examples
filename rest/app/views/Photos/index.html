@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'Photos.index' /}
+
+<ul>
+    #{list items:photos, as:'photo'}
+    <li>${photo.id}:${photo.title} <img src="@{Photos.data(photo.id)}"/></li>
+    #{/list}
+</ul>
+
+#{form @Photos.upload(), enctype:'multipart/form-data'}
+<input type="text" name="photo.title"/>
+<input type="file" name="photo.data"/>
+<input type="submit" name="submit" value="Upload"/>
+#{/form}
+

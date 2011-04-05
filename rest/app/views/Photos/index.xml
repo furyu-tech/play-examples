@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<photos>
+#{list items:photos, as:'photo'}
+    <photo>
+        <title>${photo.title}</title>
+        <dataUrl>${photo.dataUrl}</dataUrl>
+        <data>
+            <UUID>${photo.data.UUID}</UUID>
+            <type>${photo.data.type}</type>
+        </data>
+    </photo>
+#{/list}
+</photos>
