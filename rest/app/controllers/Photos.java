@@ -30,9 +30,10 @@ public class Photos extends Controller {
         Photo photo = Photo.findById(id);
 
         if (photo == null) {
-            error("Photo for id " + id + " is not found.");
+            notFound("Photo for id " + id + " is not found.");
         }
 
+        response.contentType = photo.data.type();
         renderBinary(photo.data.get());
     }
 
