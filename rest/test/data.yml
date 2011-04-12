@@ -5,3 +5,11 @@
 #   email: bob@gmail.com
 #   password: secret
 #   fullname: Bob
+
+Photo(flower):
+  title: flower
+  data:
+
+Photo(sea):
+  title: sea
+  data:
