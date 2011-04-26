@@ -37,6 +37,8 @@ public class Photos extends Controller {
         validateOrError();
 
         photo.save();
+
+        index(null, null);
     }
 
     public static void update(@Required String title, @Required long id) {
