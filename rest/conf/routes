@@ -13,8 +13,11 @@ GET     /photos                                 Photos.index
 GET     /photos.{<json|xml>format}              Photos.index
 GET     /photos/{<[0-9]+>id}/data               Photos.data
 POST    /photos                                 Photos.upload
+POST    /photos.{<json>format}                  Photos.upload
 DELETE  /photos/{<[0-9]+>id}                    Photos.delete
 PUT     /photos/{<[0-9]+>id}                    Photos.update
+
+GET     /token                                  Application.token
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

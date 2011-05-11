@@ -4,6 +4,7 @@ import models.Photo;
 import play.data.validation.*;
 import play.data.validation.Error;
 import play.mvc.Controller;
+import responses.PhotoResponse;
 
 import java.util.List;
 
@@ -38,7 +39,13 @@ public class Photos extends Controller {
 
         photo.save();
 
-        index(null, null);
+        if (request.format.equals("json")) {
+            PhotoResponse response = new PhotoResponse();
+            response.photo = photo;
+            renderJSON(response);
+        } else {
+            index(null, null);
+        }
     }
 
     public static void update(@Required String title, @Required long id) {
@@ -48,6 +55,10 @@ public class Photos extends Controller {
         photo.title = title;
 
         photo.save();
+
+        PhotoResponse response = new PhotoResponse();
+        response.photo = photo;
+        renderJSON(response);
     }
 
     public static void delete(long id) {
