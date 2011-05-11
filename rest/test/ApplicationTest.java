@@ -2,12 +2,18 @@ import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import play.Play;
 import play.test.*;
 import play.mvc.*;
 import play.mvc.Http.*;
 import models.*;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -44,18 +50,29 @@ public class ApplicationTest extends FunctionalTest {
 
     @Test
     public void testUpload() throws Exception {
-        Photo.deleteAll();
+//        Photo.deleteAll();
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("photo.title", "title");
 
-        Response response = uploadFile("title", "content");
+        Map<String, File> files = new HashMap<String, File>();
+        File file = Play.getFile("public/images/favicon.png");
+        files.put("photo.data", file);
+
+        Response response = POST("/photos", params, files);
 
         // 副作用の検証
         Photo uploadedPhoto = Photo.find("title = ?", "title").first();
         assertNotNull(uploadedPhoto);
+        assertEquals(file, uploadedPhoto.data.getFile());
 
         // レスポンスの検証
         assertContentEquals("", response);
-        assertStatus(200, response);
+        assertStatus(302, response);
         assertEquals("http://localhost/photos/" + uploadedPhoto.getId() + "/data", uploadedPhoto.dataUrl);
+    }
+
+    private void assertEquals(File expected, File actual) throws FileNotFoundException {
+        assertEquals(expected.length(), actual.length());
     }
 
     @Test
@@ -120,5 +137,4 @@ public class ApplicationTest extends FunctionalTest {
 
         return POST("/photos", parameters, files);
     }
-    
 }
