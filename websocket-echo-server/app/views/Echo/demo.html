@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'チャット' /}
+
+<style>
+    #messages {
+        border: 1px solid;
+        overflow-y: scroll;
+        height: 180px;
+        width: 240px;
+    }
+</style>
+
+<div class="content">
+    <div id="messages"></div>
+    <div id="control">
+        <input type="text" id="what" />
+        <input type="button" id="say" value="送信" />
+    </div>
+</div>
+
+<script>
+    var ws = new WebSocket("@@{Echo.WebSocketEcho.listen()}");
+
+    ws.onmessage = function(event) {
+        $('#messages').append('<div>' + event.data + '</div>');
+    };
+
+    $('#say').click(function() {
+        var $what = $('#what');
+        ws.send($what.val());
+        $what.focus();
+    });
+</script>
